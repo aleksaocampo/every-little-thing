@@ -1,2 +1,2 @@
 # every-little-thing
-A personal blog with a list of things I love every month
+a personal blog filled with a list of every little thing i love
