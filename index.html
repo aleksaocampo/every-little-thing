@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Every Little Thing I Love</title>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container py-5">
+        <!-- Header -->
+        <header class="text-center mb-5">
+            <h1 class="display-4 fw-bold text-primary">
+                ❤️ Every Little Thing I Love
+            </h1>
+            <p class="lead text-muted">A collection of all the things that bring joy to my life</p>
+        </header>
+
+        <!-- Action Buttons -->
+        <div class="d-flex justify-content-center gap-3 mb-4">
+            <button id="createListBtn" class="btn btn-primary btn-lg">
+                ➕ Create New List
+            </button>
+        </div>
+
+        <!-- Lists Container -->
+        <div id="listsContainer" class="row g-4">
+            <!-- Lists will be dynamically added here -->
+        </div>
+    </div>
+
+    <!-- Modal for Creating New List -->
+    <div class="modal" id="newListModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Create New List</h5>
+                    <button type="button" class="btn-close" onclick="closeModal('newListModal')">×</button>
+                </div>
+                <div class="modal-body">
+                    <label for="listTitleInput" class="form-label">List Title</label>
+                    <input type="text" class="form-control" id="listTitleInput" placeholder="e.g., Things I Love in November">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('newListModal')">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="saveListBtn">Create List</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Adding Item -->
+    <div class="modal" id="addItemModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Item</h5>
+                    <button type="button" class="btn-close" onclick="closeModal('addItemModal')">×</button>
+                </div>
+                <div class="modal-body">
+                    <label for="itemInput" class="form-label">What do you love?</label>
+                    <input type="text" class="form-control" id="itemInput" placeholder="e.g., Morning coffee">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('addItemModal')">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="saveItemBtn">Add Item</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Editing List Title -->
+    <div class="modal" id="editListModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit List Title</h5>
+                    <button type="button" class="btn-close" onclick="closeModal('editListModal')">×</button>
+                </div>
+                <div class="modal-body">
+                    <label for="editListTitleInput" class="form-label">List Title</label>
+                    <input type="text" class="form-control" id="editListTitleInput">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('editListModal')">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="updateListTitleBtn">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</html>
