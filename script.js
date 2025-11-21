@@ -15,9 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
 function initializeEventListeners() {
     // Create new list button
     document.getElementById('createListBtn').addEventListener('click', () => {
-        const modal = new bootstrap.Modal(document.getElementById('newListModal'));
+        openModal('newListModal');
         document.getElementById('listTitleInput').value = '';
-        modal.show();
+        document.getElementById('listTitleInput').focus();
     });
 
     // Save new list
@@ -25,7 +25,7 @@ function initializeEventListeners() {
         const title = document.getElementById('listTitleInput').value.trim();
         if (title) {
             createNewList(title);
-            bootstrap.Modal.getInstance(document.getElementById('newListModal')).hide();
+            closeModal('newListModal');
         }
     });
 
@@ -34,7 +34,7 @@ function initializeEventListeners() {
         const itemText = document.getElementById('itemInput').value.trim();
         if (itemText && currentListId !== null) {
             addItemToList(currentListId, itemText);
-            bootstrap.Modal.getInstance(document.getElementById('addItemModal')).hide();
+            closeModal('addItemModal');
         }
     });
 
@@ -43,7 +43,7 @@ function initializeEventListeners() {
         const newTitle = document.getElementById('editListTitleInput').value.trim();
         if (newTitle && currentListId !== null) {
             updateListTitle(currentListId, newTitle);
-            bootstrap.Modal.getInstance(document.getElementById('editListModal')).hide();
+            closeModal('editListModal');
         }
     });
 
@@ -64,6 +64,15 @@ function initializeEventListeners() {
         if (e.key === 'Enter') {
             document.getElementById('updateListTitleBtn').click();
         }
+    });
+
+    // Close modals when clicking outside
+    document.querySelectorAll('.modal').forEach(modal => {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal(modal.id);
+            }
+        });
     });
 }
 
@@ -127,8 +136,8 @@ function deleteItem(listId, itemId) {
 function showAddItemModal(listId) {
     currentListId = listId;
     document.getElementById('itemInput').value = '';
-    const modal = new bootstrap.Modal(document.getElementById('addItemModal'));
-    modal.show();
+    openModal('addItemModal');
+    document.getElementById('itemInput').focus();
 }
 
 // Show edit list title modal
@@ -137,9 +146,23 @@ function showEditListModal(listId) {
     const list = lists.find(l => l.id === listId);
     if (list) {
         document.getElementById('editListTitleInput').value = list.title;
-        const modal = new bootstrap.Modal(document.getElementById('editListModal'));
-        modal.show();
+        openModal('editListModal');
+        document.getElementById('editListTitleInput').focus();
     }
+}
+
+// Open modal
+function openModal(modalId) {
+    const modal = document.getElementById(modalId);
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+}
+
+// Close modal
+function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
 }
 
 // Render all lists
@@ -150,7 +173,7 @@ function renderLists() {
         container.innerHTML = `
             <div class="col-12">
                 <div class="empty-state">
-                    <i class="bi bi-heart"></i>
+                    <div style="font-size: 4rem; margin-bottom: 1rem; opacity: 0.3;">❤️</div>
                     <h3>No lists yet</h3>
                     <p>Click "Create New List" to start tracking the things you love!</p>
                 </div>
@@ -166,10 +189,10 @@ function renderLists() {
                     <h3 class="list-title">${escapeHtml(list.title)}</h3>
                     <div class="list-actions">
                         <button class="btn-icon" onclick="showEditListModal(${list.id})" title="Edit list title">
-                            <i class="bi bi-pencil"></i>
+                            ✏️
                         </button>
                         <button class="btn-icon delete-list-btn" onclick="deleteList(${list.id})" title="Delete list">
-                            <i class="bi bi-trash"></i>
+                            🗑️
                         </button>
                     </div>
                 </div>
@@ -179,18 +202,18 @@ function renderLists() {
                         list.items.map(item => `
                             <li class="list-item">
                                 <span class="item-text">
-                                    <i class="bi bi-heart-fill item-icon"></i>
+                                    <span class="item-icon">❤️</span>
                                     ${escapeHtml(item.text)}
                                 </span>
                                 <button class="delete-item-btn" onclick="deleteItem(${list.id}, ${item.id})" title="Delete item">
-                                    <i class="bi bi-x-lg"></i>
+                                    ✕
                                 </button>
                             </li>
                         `).join('')
                     }
                 </ul>
                 <button class="btn add-item-btn" onclick="showAddItemModal(${list.id})">
-                    <i class="bi bi-plus-lg"></i> Add Item
+                    ➕ Add Item
                 </button>
             </div>
         </div>
