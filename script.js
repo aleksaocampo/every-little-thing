@@ -173,9 +173,9 @@ function renderLists() {
         container.innerHTML = `
             <div class="col-12">
                 <div class="empty-state">
-                    <div style="font-size: 4rem; margin-bottom: 1rem; opacity: 0.3;">❤️</div>
-                    <h3>No lists yet</h3>
-                    <p>Click "Create New List" to start tracking the things you love!</p>
+                    <div style="font-size: 4rem; margin-bottom: 1rem; opacity: 0.3;"></div>
+                    <h3>no lists yet</h3>
+                    <p>click create new list</p>
                 </div>
             </div>
         `;

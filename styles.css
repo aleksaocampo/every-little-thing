@@ -17,14 +17,24 @@ body {
     font-family: 'Darumadrop One', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
+    /* center the main container in the middle of the screen */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* ensure some breathing room on very small screens */
+    padding: 1.5rem;
 }
 
 .container {
     background-color: var(--container-color);
     border-radius: 20px;
     box-shadow: 0 20px 60px rgba(112, 59, 59, 0.14);
+    width: 100%;
     max-width: 1200px;
-    margin: 0 auto;
+    /* prevent flexbox from shrinking the container so it keeps its original size */
+    flex: 0 0 auto;
+    /* remove auto horizontal margin since body flex will center it */
+    margin: 0;
 }
 
 .py-5 {
@@ -122,6 +132,8 @@ header h1 {
     font-size: 1rem;
     font-weight: 600;
     transition: all 0.2s ease;
+    /* ensure buttons use the Google font */
+    font-family: 'Darumadrop One', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .btn-primary {
@@ -146,6 +158,13 @@ header h1 {
 .btn-lg {
     padding: 1rem 2rem;
     font-size: 1.125rem;
+}
+
+/* ensure native button elements and button-like controls use the same font */
+button,
+.btn-icon,
+.btn-close {
+    font-family: 'Darumadrop One', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .list-card {
