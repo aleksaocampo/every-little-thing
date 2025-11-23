@@ -189,20 +189,20 @@ function renderLists() {
                     <h3 class="list-title">${escapeHtml(list.title)}</h3>
                     <div class="list-actions">
                         <button class="btn-icon" onclick="showEditListModal(${list.id})" title="Edit list title">
-                            ✏️
+                            ✎
                         </button>
                         <button class="btn-icon delete-list-btn" onclick="deleteList(${list.id})" title="Delete list">
-                            🗑️
+                            ⊘
                         </button>
                     </div>
                 </div>
                 <ul class="list-items">
                     ${list.items.length === 0 ? 
-                        '<li class="text-muted text-center py-3">No items yet</li>' : 
+                        '<li class="text-muted text-center py-3">no items yet</li>' : 
                         list.items.map(item => `
                             <li class="list-item">
                                 <span class="item-text">
-                                    <span class="item-icon">❤️</span>
+                                    <span class="item-icon"> ★</span>
                                     ${escapeHtml(item.text)}
                                 </span>
                                 <button class="delete-item-btn" onclick="deleteItem(${list.id}, ${item.id})" title="Delete item">
@@ -213,7 +213,7 @@ function renderLists() {
                     }
                 </ul>
                 <button class="btn add-item-btn" onclick="showAddItemModal(${list.id})">
-                    ➕ Add Item
+                    + add item
                 </button>
             </div>
         </div>

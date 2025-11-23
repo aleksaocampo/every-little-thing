@@ -3,6 +3,7 @@
 :root {
     --primary-color: #703B3B; /* background & buttons */
     --container-color: #E1D0B3; /* container & card backgrounds */
+    --card-color: #A18D6D;
     --card-shadow: 0 8px 24px rgba(112, 59, 59, 0.12);
     --card-shadow-hover: 0 12px 36px rgba(112, 59, 59, 0.16);
 }
@@ -31,6 +32,8 @@ body {
     box-shadow: 0 20px 60px rgba(112, 59, 59, 0.14);
     width: 100%;
     max-width: 1200px;
+    /* keep content away from the container edges (offsets row negative margins) */
+    padding-inline: 0.75rem;
     /* prevent flexbox from shrinking the container so it keeps its original size */
     flex: 0 0 auto;
     /* remove auto horizontal margin since body flex will center it */
@@ -120,7 +123,7 @@ header h1 {
 }
 
 .text-muted {
-    color: var(--container-color);
+    color: var(--card-color);
 }
 
 /* Buttons */
@@ -173,12 +176,14 @@ button,
     padding: 1.5rem;
     box-shadow: var(--card-shadow);
     transition: all 0.2s ease;
-    border: 2px solid transparent;
+    /* dashed border to match the add-item button style */
+    border: 2px dashed var(--card-color);
 }
 
 .list-card:hover {
     box-shadow: var(--card-shadow-hover);
-    border-color: var(--primary-color);
+    border-color: var(--card-color);
+    border-style: solid;
     transform: translateY(-5px);
 }
 
